@@ -7,3 +7,6 @@
 /build
 /captures
 .externalNativeBuild
+
+# Firebase Key File
+google-services.json

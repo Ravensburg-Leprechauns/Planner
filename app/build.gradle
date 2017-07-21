@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.google.gms.google-services'
+
 
 android {
     compileSdkVersion 26
@@ -13,6 +13,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // Enable multidex support
+        // multiDexEnabled true
     }
     buildTypes {
         release {
@@ -32,4 +34,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'com.android.support:design:26.0.0-beta2'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    compile 'com.google.firebase:firebase-core:11.0.2'
+    compile 'com.google.firebase:firebase-database:11.0.2'
+    compile 'com.google.firebase:firebase-auth:11.0.2'
 }
+
+apply plugin: 'com.google.gms.google-services'

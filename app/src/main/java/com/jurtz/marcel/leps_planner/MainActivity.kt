@@ -1,17 +1,38 @@
 package com.jurtz.marcel.leps_planner
 
+import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.text.TextUtils
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.Toast
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    //private var database: FirebaseDatabase = FirebaseDatabase.getInstance()
+    //private var dbReference: DatabaseReference = database.getReference()
+
+    var progressDialog: ProgressDialog? = null
+    var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +50,58 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        /*
+        dbReference.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+                // Ausgeführt, wenn Firebase Datenbank verändert wird
+                //var x:String = dataSnapshot?.value.toString()
+                //txtFirebaseSample.text = x
+            }
+
+            override fun onCancelled(p0: DatabaseError?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
+        */
+
+        progressDialog = ProgressDialog(applicationContext)
+        cmdPerformLogin.setOnClickListener(View.OnClickListener {
+            click(cmdPerformLogin)
+        })
+    }
+
+    private fun click(view: View) {
+        if(view == cmdPerformLogin) {
+            loginUser()
+        }
+    }
+
+    private fun loginUser() {
+        var email: String = txtLoginUsername.text.toString().trim()
+        var password: String = txtLoginPassword.text.toString().trim()
+
+        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+            Toast.makeText(applicationContext, getString(R.string.login_empty), Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // TODO: Progressdialog Alternative
+        // TODO: LoginPage auf eigene Activity
+        //progressDialog?.setMessage(getString(R.string.login_user_progress))
+        //progressDialog?.show()
+
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task: Task<AuthResult> ->
+            if (task.isSuccessful) {
+                //Registration OK
+                //val firebaseUser = this.firebaseAuth.currentUser!!
+                Toast.makeText(applicationContext, "Registered successfully!",Toast.LENGTH_SHORT).show()
+            } else {
+                //Registration error
+                Toast.makeText(applicationContext, "Failed registering",Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     override fun onBackPressed() {

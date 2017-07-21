@@ -8,13 +8,30 @@
     tools:context="com.jurtz.marcel.leps_planner.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent" >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtLoginUsername"
+            android:hint="@string/login_username_hint"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtLoginPassword"
+            android:hint="@string/login_password_hint"
+            android:inputType="textPassword"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/padding_small"
+            android:id="@+id/cmdPerformLogin"
+            android:hint="@string/login_button_text"/>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -21,7 +21,7 @@ Firebase verwendet NoSQL-Datenbanken. Folgendes Schema wird in der Anwendung ver
 	"groups": {
 		"0": {
 			"description":"Unassigned"
-		}
+		},
 		"1": {
 			"description":"Team"
 		},

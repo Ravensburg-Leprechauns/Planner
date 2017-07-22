@@ -21,6 +21,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        if(firebaseAuth.currentUser != null ) {
+            // profile activity
+        }
+
         cmdPerformLogin.setOnClickListener(View.OnClickListener {
             click(cmdPerformLogin)
         })
@@ -34,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
         if(view == cmdPerformLogin) {
             loginUser()
         } else if(view == lblLogin) {
+            // finish()
             var intent = Intent(applicationContext, SignUpActivity::class.java)
             startActivity(intent)
         }
@@ -52,14 +57,14 @@ class LoginActivity : AppCompatActivity() {
         //progressDialog?.setMessage(getString(R.string.login_user_progress))
         //progressDialog?.show()
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task: Task<AuthResult> ->
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task: Task<AuthResult> ->
             if (task.isSuccessful) {
                 //Registration OK
                 //val firebaseUser = this.firebaseAuth.currentUser!!
-                Toast.makeText(applicationContext, "Registered successfully!", Toast.LENGTH_SHORT).show()
+                // User Acitivity
             } else {
-                //Registration error
-                Toast.makeText(applicationContext, "Failed registering", Toast.LENGTH_SHORT).show()
+                // Login error
+                Toast.makeText(applicationContext, getString(R.string.login_sign_in_failed), Toast.LENGTH_LONG).show()
             }
         }
 

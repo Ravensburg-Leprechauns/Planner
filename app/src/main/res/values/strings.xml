@@ -15,4 +15,5 @@
     <string name="login_register_needed">Need an Account? Sign up.</string>
     <string name="login_empty">No login data provided!</string>
     <string name="login_user_progress">Loggin in...</string>
+    <string name="login_sign_in_failed">Failed to sign in! Check your credentials.</string>
 </resources>

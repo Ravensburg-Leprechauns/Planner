@@ -65,43 +65,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
         */
 
-        progressDialog = ProgressDialog(applicationContext)
-        cmdPerformLogin.setOnClickListener(View.OnClickListener {
-            click(cmdPerformLogin)
-        })
-    }
-
-    private fun click(view: View) {
-        if(view == cmdPerformLogin) {
-            loginUser()
-        }
-    }
-
-    private fun loginUser() {
-        var email: String = txtLoginUsername.text.toString().trim()
-        var password: String = txtLoginPassword.text.toString().trim()
-
-        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-            Toast.makeText(applicationContext, getString(R.string.login_empty), Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        // TODO: Progressdialog Alternative
-        // TODO: LoginPage auf eigene Activity
-        //progressDialog?.setMessage(getString(R.string.login_user_progress))
-        //progressDialog?.show()
-
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task: Task<AuthResult> ->
-            if (task.isSuccessful) {
-                //Registration OK
-                //val firebaseUser = this.firebaseAuth.currentUser!!
-                Toast.makeText(applicationContext, "Registered successfully!",Toast.LENGTH_SHORT).show()
-            } else {
-                //Registration error
-                Toast.makeText(applicationContext, "Failed registering",Toast.LENGTH_SHORT).show()
-            }
-        }
-
     }
 
     override fun onBackPressed() {

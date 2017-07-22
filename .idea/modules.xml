@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Leps_Planner.iml" filepath="$PROJECT_DIR$/Leps_Planner.iml" />
       <module fileurl="file://D:\Dokumente\Planner\Leps_Planner.iml" filepath="D:\Dokumente\Planner\Leps_Planner.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Planner.iml" filepath="$PROJECT_DIR$/Planner.iml" />
+      <module fileurl="file://C:\Users\superuser\Documents\android_projects\Leps_Planner\Planner.iml" filepath="C:\Users\superuser\Documents\android_projects\Leps_Planner\Planner.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://D:\Dokumente\Planner\app\app.iml" filepath="D:\Dokumente\Planner\app\app.iml" />
     </modules>

@@ -1,29 +1,21 @@
 package com.jurtz.marcel.leps_planner
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.app.Fragment
+import android.app.FragmentManager
+import android.app.FragmentTransaction
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.text.TextUtils
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.ProgressBar
-import android.widget.Toast
-import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.content_main.*
-import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.jurtz.marcel.leps_planner.Fragments.*
 import com.jurtz.marcel.leps_planner.Login.LoginActivity
 
 
@@ -32,7 +24,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     //private var database: FirebaseDatabase = FirebaseDatabase.getInstance()
     //private var dbReference: DatabaseReference = database.getReference()
 
-    var progressDialog: ProgressDialog? = null
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,7 +63,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            // super.onBackPressed()
+            finish()
         }
     }
 
@@ -93,28 +85,35 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        when (item.itemId) {
-            R.id.nav_events_new -> {
-                // Handle the camera action
-            }
-            R.id.nav_events_all -> {
 
-            }
-            R.id.nav_events_mine -> {
+        val id = item.itemId
 
-            }
-            R.id.nav_about -> {
+        var fragment: Fragment? = null
 
-            }
-            R.id.nav_sign_out -> {
-                firebaseAuth.signOut()
-                finish()
-                startActivity(Intent(applicationContext, LoginActivity::class.java))
-            }
+        when (id) {
+            R.id.nav_events_new -> fragment = FragEventsNew()
+            R.id.nav_events_all -> fragment = FragEventsAll()
+            R.id.nav_events_mine -> fragment = FragEventsMine()
+            R.id.nav_profile -> fragment = FragUserSettings()
+            R.id.nav_about -> fragment = FragAbout()
+            R.id.nav_sign_out -> signout()
         }
+
+        if (fragment != null) {
+            val ft = fragmentManager.beginTransaction()
+            ft.replace(R.id.content_main, fragment)
+            // TODO: ft.addToBackStack("main")
+            ft.commit()
+        }
+
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun signout() {
+        firebaseAuth.signOut()
+        finish()
+        startActivity(Intent(applicationContext, LoginActivity::class.java))
     }
 }

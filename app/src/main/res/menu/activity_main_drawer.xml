@@ -21,6 +21,10 @@
     <item android:title="@string/nav_title_settings">
         <menu>
             <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/ic_account_circle_black_24dp"
+                android:title="@string/nav_account" />
+            <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_info_outline_black_24dp"
                 android:title="@string/nav_about" />

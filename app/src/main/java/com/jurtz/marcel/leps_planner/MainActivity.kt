@@ -15,6 +15,8 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.jurtz.marcel.leps_planner.Fragments.*
 import com.jurtz.marcel.leps_planner.Login.LoginActivity
 

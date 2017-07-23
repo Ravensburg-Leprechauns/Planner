@@ -31,11 +31,16 @@
     <string name="login_sign_up_failed">Failed to sign up! Check your credentials.</string>
 
     <string name="usettings_lbl_mail">E-mail:</string>
-    <string name="usettings_txt_mail">Enter your e-mail</string>
+    <string name="usettings_txt_mail">Your e-mail</string>
     <string name="usettings_lbl_name">Name:</string>
-    <string name="usettings_txt_name">Enter your name</string>
+    <string name="usettings_txt_name">Your name</string>
     <string name="usettings_lbl_number">Shirt number</string>
-    <string name="usettings_txt_number">Enter your shirt number</string>
+    <string name="usettings_txt_number">Your shirt number</string>
+    <string name="usettings_lbl_role">Role:</string>
+    <string name="usettings_lbl_group">Group:</string>
+    <string name="usettings_group_team">Team</string>
+
+    <string name="button_save">Save</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

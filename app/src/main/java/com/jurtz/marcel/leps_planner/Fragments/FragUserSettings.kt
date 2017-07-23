@@ -7,12 +7,20 @@ import android.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
+import com.jurtz.marcel.leps_planner.Constants
 import com.jurtz.marcel.leps_planner.R
+import com.jurtz.marcel.leps_planner.User
+import kotlinx.android.synthetic.main.fragment_user_settings.*
 
 
 class FragUserSettings : Fragment() {
 
-    private var mListener: OnFragmentInteractionListener? = null
+    var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    var databaseReference: DatabaseReference = FirebaseDatabase.getInstance().getReference()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,29 +33,81 @@ class FragUserSettings : Fragment() {
         return inflater!!.inflate(R.layout.fragment_user_settings, container, false)
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            mListener = context
-        } else {
-            throw RuntimeException(context!!.toString() + " must implement OnFragmentInteractionListener")
+    override fun onStart() {
+        super.onStart()
+        txtSettingsMail.isEnabled = false
+        txtSettingsRole.isEnabled = false
+        txtSettingsGroup.isEnabled = false
+
+        var name: String?
+        var email: String?
+        var number: Int?
+        var group: Int?
+        var role: Int?
+
+        cmdSaveUserSettings.setOnClickListener(View.OnClickListener {
+            saveUserSettings()
+        })
+
+        databaseReference.child(Constants.str_db_child_user).child(firebaseAuth?.currentUser?.uid).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // var userMap = dataSnapshot.value as User?
+                val map = dataSnapshot.getValue() as Map<String, Any>
+                email = map.get("email").toString()
+                name = map.get("name").toString()
+                number = map.get("shirt_number").toString().toInt()
+                group = map.get("group").toString().toInt()
+                role = map.get("role").toString().toInt()
+
+
+                txtSettingsMail.setText(email)
+                txtSettingsName.setText(name)
+                txtSettingsNumber.setText(number.toString())
+                if(role as Int > 0)
+                    txtSettingsRole.setText(Constants.list_roles[role as Int])
+
+                if(group as Int > 0)
+                    txtSettingsGroup.setText(Constants.list_groups[group as Int])
+
+            }
+
+            override fun onCancelled(firebaseError: DatabaseError) {
+
+            }
+        })
+
+        // txtSettingsMail.setText(firebaseAuth?.currentUser?.email)
+
+    }
+
+    private fun saveUserSettings() {
+        val name = txtSettingsName.text.toString().trim()
+        val mail = txtSettingsMail.text.toString().trim()
+        val shirt = txtSettingsNumber.text.toString().toInt()
+        val group_str = txtSettingsGroup.text.toString().trim()
+        val role_str = txtSettingsRole.text.toString().trim()
+
+        var group: Int = -1
+
+        when(group_str) {
+            Constants.str_group_general -> group = Constants.id_group_general
+            Constants.str_group_team -> group = Constants.id_group_team
+            Constants.str_group_youth -> group = Constants.id_group_youth
         }
-    }
 
-    override fun onDetach() {
-        super.onDetach()
-        mListener = null
-    }
+        var role: Int = -1
 
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
-    }
-
-    companion object {
-        fun newInstance(): FragUserSettings {
-            val fragment = FragUserSettings()
-            return fragment
+        when(role_str) {
+            Constants.str_role_user -> role = Constants.id_role_user
+            Constants.str_role_admin -> role = Constants.id_role_admin
         }
+
+        val user = User(mail, name, shirt, group, role)
+
+        val firebaseUser = firebaseAuth.currentUser
+
+        databaseReference.child(Constants.str_db_child_user).child(firebaseUser?.uid).setValue(user)
+
+        Toast.makeText(getView().getContext(), "SAVED", Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,11 +1,21 @@
 package com.jurtz.marcel.leps_planner
 
 data class User(
+        val email: String,
         val name: String,
-        val shirt_number: String,
-        val groups: IntArray,
-        val attended_events: IntArray
+        val shirt_number: Int,
+        val group: Int,
+        val role: Int
 )
+
+// Roles:
+// 0: user
+// 1: admin
+
+// Group:
+// 0: general (not specifically given, has everyone)
+// 1: team
+// 2: youth
 
 data class Group(
         val id: Int,

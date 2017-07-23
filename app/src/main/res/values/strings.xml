@@ -9,6 +9,10 @@
 
     <string name="action_settings">Settings</string>
 
+    <string name="nav_title_admin">Administration</string>
+    <string name="nav_event_create">New Event</string>
+    <string name="nav_event_edit">Edit Event</string>
+    <string name="nav_users_edit">Edit Users</string>
     <string name="nav_title_settings">Settings</string>
     <string name="nav_sign_out">Sign out</string>
     <string name="nav_about">About</string>

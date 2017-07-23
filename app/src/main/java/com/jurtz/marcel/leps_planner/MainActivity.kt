@@ -12,13 +12,14 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.jurtz.marcel.leps_planner.Fragments.*
 import com.jurtz.marcel.leps_planner.Login.LoginActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -27,12 +28,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     //private var dbReference: DatabaseReference = database.getReference()
 
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    var databaseReference = FirebaseDatabase.getInstance().getReference()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         // setSupportActionBar(toolbar)
 
+        // TODO: Fab for event-creation?
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
@@ -59,6 +62,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
         */
 
+        databaseReference.child(Constants.str_db_child_user).child(firebaseAuth?.currentUser?.uid).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // var userMap = dataSnapshot.value as User?
+                val map = dataSnapshot.getValue() as Map<String, Any>?
+                if(map != null) {
+                    var role = map.get("role").toString().toInt()
+
+                    // Activate Admin Controls if User is Admin
+                    if (role as Int == Constants.id_role_admin) {
+                        nav_view.menu.findItem(R.id.mcAdministration).setVisible(true)
+                    }
+                }
+            }
+
+            override fun onCancelled(firebaseError: DatabaseError) {
+
+            }
+        })
     }
 
     override fun onBackPressed() {

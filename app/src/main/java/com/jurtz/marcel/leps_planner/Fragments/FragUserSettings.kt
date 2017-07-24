@@ -42,8 +42,8 @@ class FragUserSettings : Fragment() {
         var name: String?
         var email: String?
         var number: Int?
-        var group: Int?
-        var role: Int?
+        var group: String?
+        var role: String?
 
         cmdSaveUserSettings.setOnClickListener(View.OnClickListener {
             saveUserSettings()
@@ -52,23 +52,26 @@ class FragUserSettings : Fragment() {
         databaseReference.child(Constants.str_db_child_user).child(firebaseAuth?.currentUser?.uid).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // var userMap = dataSnapshot.value as User?
-                val map = dataSnapshot.getValue() as Map<String, Any>
-                email = map.get("email").toString()
-                name = map.get("name").toString()
-                number = map.get("shirt_number").toString().toInt()
-                group = map.get("group").toString().toInt()
-                role = map.get("role").toString().toInt()
+                val map = dataSnapshot.getValue() as Map<String, Any>?
+                if(map != null) {
+                    email = map.get("email").toString()
+                    if(email == "") {
+                        email = firebaseAuth.currentUser?.email
+                    }
+                    name = map.get("name").toString()
+                    number = map.get("shirt_number").toString().toInt()
+                    group = map.get("group").toString()
+                    role = map.get("role").toString()
 
+                    if(role == "") role = Constants.str_role_user
+                    if(group == "") group = Constants.str_group_general
 
-                txtSettingsMail.setText(email)
-                txtSettingsName.setText(name)
-                txtSettingsNumber.setText(number.toString())
-                if(role as Int > 0)
-                    txtSettingsRole.setText(Constants.list_roles[role as Int])
-
-                if(group as Int > 0)
-                    txtSettingsGroup.setText(Constants.list_groups[group as Int])
-
+                    txtSettingsMail.setText(email)
+                    txtSettingsName.setText(name)
+                    txtSettingsNumber.setText(number.toString())
+                    txtSettingsRole.setText(role)
+                    txtSettingsGroup.setText(group)
+                }
             }
 
             override fun onCancelled(firebaseError: DatabaseError) {
@@ -84,9 +87,10 @@ class FragUserSettings : Fragment() {
         val name = txtSettingsName.text.toString().trim()
         val mail = txtSettingsMail.text.toString().trim()
         val shirt = txtSettingsNumber.text.toString().toInt()
-        val group_str = txtSettingsGroup.text.toString().trim()
-        val role_str = txtSettingsRole.text.toString().trim()
+        val group = txtSettingsGroup.text.toString().trim()
+        val role = txtSettingsRole.text.toString().trim()
 
+        /*
         var group: Int = -1
 
         when(group_str) {
@@ -101,6 +105,7 @@ class FragUserSettings : Fragment() {
             Constants.str_role_user -> role = Constants.id_role_user
             Constants.str_role_admin -> role = Constants.id_role_admin
         }
+        */
 
         val user = User(mail, name, shirt, group, role)
 

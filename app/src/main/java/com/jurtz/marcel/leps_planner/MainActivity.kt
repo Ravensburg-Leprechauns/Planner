@@ -67,10 +67,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 // var userMap = dataSnapshot.value as User?
                 val map = dataSnapshot.getValue() as Map<String, Any>?
                 if(map != null) {
-                    var role = map.get("role").toString().toInt()
+                    var role = map.get("role").toString()
 
                     // Activate Admin Controls if User is Admin
-                    if (role as Int == Constants.id_role_admin) {
+                    if (role == Constants.str_role_admin) {
                         nav_view.menu.findItem(R.id.mcAdministration).setVisible(true)
                     }
                 }

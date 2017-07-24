@@ -4,8 +4,8 @@ data class User(
         val email: String,
         val name: String,
         val shirt_number: Int,
-        val group: Int,
-        val role: Int
+        val group: String,
+        val role: String
 )
 
 // Roles:

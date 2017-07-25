@@ -13,7 +13,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.jurtz.marcel.leps_planner.MainActivity
 import com.jurtz.marcel.leps_planner.R
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.content_main.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -35,6 +34,10 @@ class LoginActivity : AppCompatActivity() {
         lblLogin.setOnClickListener(View.OnClickListener {
             click(lblLogin)
         })
+
+        lblForgotPassword.setOnClickListener(View.OnClickListener {
+            click(lblForgotPassword)
+        })
     }
 
     private fun click(view: View) {
@@ -43,6 +46,9 @@ class LoginActivity : AppCompatActivity() {
         } else if(view == lblLogin) {
             finish()
             var intent = Intent(applicationContext, SignUpActivity::class.java)
+            startActivity(intent)
+        } else if(view == lblForgotPassword) {
+            var intent = Intent(applicationContext, ResetPasswordActivity::class.java)
             startActivity(intent)
         }
     }

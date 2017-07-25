@@ -36,10 +36,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // setSupportActionBar(toolbar)
 
         // TODO: Fab for event-creation?
+        /*
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
-        }
+        }*/
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+        toolbar.setTitle(getString(R.string.drawer_title_main))
 
         /*
         dbReference.addValueEventListener(object: ValueEventListener {
@@ -114,13 +116,29 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var fragment: Fragment? = null
 
         when (id) {
-            R.id.nav_event_create -> fragment = FragAdminEventNew()
-            R.id.nav_events_new -> fragment = FragEventsNew()
-            R.id.nav_events_all -> fragment = FragEventsAll()
-            R.id.nav_events_mine -> fragment = FragEventsMine()
-            R.id.nav_profile -> fragment = FragUserSettings()
-            R.id.nav_about -> fragment = FragAbout()
-            R.id.nav_sign_out -> signout()
+            R.id.nav_event_create -> {
+                fragment = FragAdminEventNew()
+                toolbar.setTitle(getString(R.string.drawer_title_admin_create_event))
+            }
+            R.id.nav_events_new -> {
+                fragment = FragEventsNew()
+            }
+            R.id.nav_events_all -> {
+                fragment = FragEventsAll()
+            }
+            R.id.nav_events_mine -> {
+                fragment = FragEventsMine()
+            }
+            R.id.nav_profile -> {
+                fragment = FragUserSettings()
+                toolbar.setTitle(getString(R.string.drawer_title_user_settings))
+            }
+            R.id.nav_about -> {
+                fragment = FragAbout()
+            }
+            R.id.nav_sign_out -> {
+                signout()
+            }
         }
 
         if (fragment != null) {

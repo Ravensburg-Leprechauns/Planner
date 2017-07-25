@@ -16,6 +16,7 @@
             android:id="@+id/lblSettingsMail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:layout_weight="2"
             android:text="@string/usettings_lbl_mail"/>
 
@@ -23,6 +24,7 @@
             android:id="@+id/txtSettingsMail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:layout_weight="1"
             android:hint="@string/usettings_txt_mail"/>
 
@@ -38,6 +40,7 @@
             android:id="@+id/lblSettingsName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:layout_weight="2"
             android:layout_gravity="center"
             android:text="@string/usettings_lbl_name"/>
@@ -46,6 +49,7 @@
             android:id="@+id/txtSettingsName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:hint="@string/usettings_txt_name"/>
@@ -62,6 +66,7 @@
             android:id="@+id/lblSettingsNumber"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:layout_weight="2"
             android:layout_gravity="center"
             android:text="@string/usettings_lbl_number"/>
@@ -70,6 +75,7 @@
             android:id="@+id/txtSettingsNumber"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:inputType="number"
@@ -87,6 +93,7 @@
             android:id="@+id/lblSettingsGroup"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:layout_weight="2"
             android:layout_gravity="center"
             android:text="@string/usettings_lbl_group"/>
@@ -95,6 +102,7 @@
             android:id="@+id/txtSettingsGroup"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:text="@string/usettings_group_team"
@@ -112,6 +120,7 @@
             android:id="@+id/lblSettingsRole"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:layout_weight="2"
             android:layout_gravity="center"
             android:text="@string/usettings_lbl_role"/>
@@ -120,6 +129,7 @@
             android:id="@+id/txtSettingsRole"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:inputType="none" />

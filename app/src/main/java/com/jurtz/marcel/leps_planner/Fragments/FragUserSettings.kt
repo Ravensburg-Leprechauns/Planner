@@ -14,6 +14,8 @@ import com.google.firebase.database.*
 import com.jurtz.marcel.leps_planner.Constants
 import com.jurtz.marcel.leps_planner.R
 import com.jurtz.marcel.leps_planner.User
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_user_settings.*
 
 
@@ -35,6 +37,8 @@ class FragUserSettings : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+
         txtSettingsMail.isEnabled = false
         txtSettingsRole.isEnabled = false
         txtSettingsGroup.isEnabled = false

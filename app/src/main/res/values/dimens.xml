@@ -7,4 +7,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="padding_small">14dp</dimen>
     <dimen name="fontsize_heading">24dp</dimen>
+    <dimen name="fontsize_regular">16dp</dimen>
+    <dimen name="padding_page">5dp</dimen>
+    <dimen name="margin_datetime">10dp</dimen>
 </resources>

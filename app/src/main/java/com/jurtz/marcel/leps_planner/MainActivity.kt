@@ -114,6 +114,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var fragment: Fragment? = null
 
         when (id) {
+            R.id.nav_event_create -> fragment = FragAdminEventNew()
             R.id.nav_events_new -> fragment = FragEventsNew()
             R.id.nav_events_all -> fragment = FragEventsAll()
             R.id.nav_events_mine -> fragment = FragEventsMine()

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Leps_Planner</string>
 
+    <string name="LANGUAGE_IDENTIFIER">en</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -51,6 +53,19 @@
 
     <string name="usettings_role_user">User</string>
     <string name="usettings_role_admin">Administrator</string>
+
+    <string name="type_game_home">Game - Home</string>
+    <string name="type_game_away">Game - Away</string>
+    <string name="type_other">Other</string>
+
+    <string name="adm_ce_lbl_title">Title:</string>
+    <string name="adm_ce_lbl_description">Description:</string>
+    <string name="adm_ce_lbl_date">Date:</string>
+    <string name="adm_ce_lbl_time">Time:</string>
+    <string name="adm_ce_lbl_group">Group:</string>
+    <string name="adm_ce_lbl_type">Type</string>
+    <string name="adm_ce_lbl_location">Location:</string>
+    <string name="adm_ce_cmd_save">Save Event</string>
 
     <string name="msg_saved_changes">Changes have been saved!</string>
     <string name="msg_success_password_reset">A reset-email has been sent to you!</string>

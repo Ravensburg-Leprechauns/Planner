@@ -42,7 +42,14 @@
     <string name="usettings_txt_number">Your shirt number</string>
     <string name="usettings_lbl_role">Role:</string>
     <string name="usettings_lbl_group">Group:</string>
+
+    <string name="usettings_group_general">General</string>
     <string name="usettings_group_team">Team</string>
+    <string name="usettings_group_youth">Youth</string>
+
+    <string name="usettings_role_user">User</string>
+    <string name="usettings_role_admin">Administrator</string>
+    <string name="msg_saved_changes">Changes have been saved!</string>
 
     <string name="button_save">Save</string>
 

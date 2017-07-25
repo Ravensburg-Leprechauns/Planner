@@ -39,16 +39,13 @@ class FragUserSettings : Fragment() {
         txtSettingsRole.isEnabled = false
         txtSettingsGroup.isEnabled = false
 
-        var name: String?
-        var email: String?
-        var number: Int?
-        var group: String?
-        var role: String?
+        var name: String? = null
+        var email: String? = null
+        var number: Int? = null
+        var group: String? = null
+        var role: String? = null
 
-        cmdSaveUserSettings.setOnClickListener(View.OnClickListener {
-            saveUserSettings()
-        })
-
+        // Get user data from firebase database
         databaseReference.child(Constants.str_db_child_user).child(firebaseAuth?.currentUser?.uid).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // var userMap = dataSnapshot.value as User?
@@ -63,14 +60,27 @@ class FragUserSettings : Fragment() {
                     group = map.get("group").toString()
                     role = map.get("role").toString()
 
-                    if(role == "") role = Constants.str_role_user
-                    if(group == "") group = Constants.str_group_general
+                    if(role == "") role = getString(R.string.usettings_role_user)
+                    if(group == "") group = getString(R.string.usettings_group_general)
 
                     txtSettingsMail.setText(email)
                     txtSettingsName.setText(name)
                     txtSettingsNumber.setText(number.toString())
-                    txtSettingsRole.setText(role)
-                    txtSettingsGroup.setText(group)
+
+                    if(role == Constants.dbstr_role_admin) {
+                        txtSettingsRole.setText(getString(R.string.usettings_role_admin))
+                    } else {
+                        txtSettingsRole.setText(getString(R.string.usettings_role_user))
+                    }
+
+                    if(group == Constants.dbstr_group_team) {
+                        txtSettingsGroup.setText(getString(R.string.usettings_group_team))
+                    } else if(group == Constants.dbstr_group_youth){
+                        txtSettingsGroup.setText(getString(R.string.usettings_group_youth))
+                    }
+                    else {
+                        txtSettingsGroup.setText(getString(R.string.usettings_group_general))
+                    }
                 }
             }
 
@@ -79,40 +89,31 @@ class FragUserSettings : Fragment() {
             }
         })
 
+        cmdSaveUserSettings.setOnClickListener(View.OnClickListener {
+            saveUserSettings(group, role)
+        })
+
         // txtSettingsMail.setText(firebaseAuth?.currentUser?.email)
 
     }
 
-    private fun saveUserSettings() {
+    // Store user settings to database
+    private fun saveUserSettings(group: String?, role: String?) {
         val name = txtSettingsName.text.toString().trim()
         val mail = txtSettingsMail.text.toString().trim()
         val shirt = txtSettingsNumber.text.toString().toInt()
-        val group = txtSettingsGroup.text.toString().trim()
-        val role = txtSettingsRole.text.toString().trim()
 
-        /*
-        var group: Int = -1
+        // Don't allow overriding of group and role
+        // val group = txtSettingsGroup.text.toString().trim()
+        // val role = txtSettingsRole.text.toString().trim()
 
-        when(group_str) {
-            Constants.str_group_general -> group = Constants.id_group_general
-            Constants.str_group_team -> group = Constants.id_group_team
-            Constants.str_group_youth -> group = Constants.id_group_youth
+        if(group != null && role != null) {
+
+            val user = User(mail, name, shirt, group, role)
+            val firebaseUser = firebaseAuth.currentUser
+
+            databaseReference.child(Constants.str_db_child_user).child(firebaseUser?.uid).setValue(user)
+            Toast.makeText(getView().getContext(), getString(R.string.msg_saved_changes), Toast.LENGTH_SHORT).show();
         }
-
-        var role: Int = -1
-
-        when(role_str) {
-            Constants.str_role_user -> role = Constants.id_role_user
-            Constants.str_role_admin -> role = Constants.id_role_admin
-        }
-        */
-
-        val user = User(mail, name, shirt, group, role)
-
-        val firebaseUser = firebaseAuth.currentUser
-
-        databaseReference.child(Constants.str_db_child_user).child(firebaseUser?.uid).setValue(user)
-
-        Toast.makeText(getView().getContext(), "SAVED", Toast.LENGTH_SHORT).show();
     }
 }

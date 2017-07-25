@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     var role = map.get("role").toString()
 
                     // Activate Admin Controls if User is Admin
-                    if (role == Constants.str_role_admin) {
+                    if (role == Constants.dbstr_role_admin) {
                         nav_view.menu.findItem(R.id.mcAdministration).setVisible(true)
                     }
                 }

@@ -17,4 +17,39 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="color_green">
+        <item name="android:color">@color/colorPrimary</item>
+    </style>
+
+    <style name="leps_textview">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/fontsize_regular</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="leps_header">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/fontsize_heading</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="leps_input">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="leps_input_password">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">textPassword</item>
+    </style>
+
+    <style name="leps_button_fullwidth">
+        <item name="android:paddingTop">@dimen/padding_small</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>

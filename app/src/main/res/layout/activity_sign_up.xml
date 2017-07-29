@@ -14,11 +14,8 @@
             android:layout_margin="50dp">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="@string/login_header_signup"
-                    android:textSize="@dimen/fontsize_heading"/>
+                    style="@style/leps_header"
+                    android:text="@string/login_header_signup"/>
 
                 <ProgressBar
                     android:layout_width="match_parent"
@@ -29,29 +26,22 @@
                     android:visibility="invisible"/>
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/leps_input"
                     android:id="@+id/txtSignUpEmail"
                     android:hint="@string/login_email_hint"/>
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/leps_input_password"
                     android:id="@+id/txtSignUpPassword"
-                    android:hint="@string/login_password_hint"
-                    android:inputType="textPassword"/>
+                    android:hint="@string/login_password_hint" />
 
                 <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/padding_small"
+                    style="@style/leps_button_fullwidth"
                     android:id="@+id/cmdPerformSignUp"
                     android:hint="@string/signup_button_text"/>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
+                    style="@style/leps_textview"
                     android:layout_marginTop="25dp"
                     android:id="@+id/lblSignUp"
                     android:text="@string/login_already_registered"/>

@@ -26,9 +26,10 @@
                     android:visibility="invisible"/>
 
                 <EditText
-                    style="@style/leps_input"
                     android:id="@+id/txtSignUpEmail"
-                    android:hint="@string/login_email_hint"/>
+                    style="@style/leps_input"
+                    android:hint="@string/login_email_hint"
+                    android:inputType="textEmailAddress" />
 
                 <EditText
                     style="@style/leps_input_password"

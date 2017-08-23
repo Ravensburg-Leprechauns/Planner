@@ -30,3 +30,10 @@ Login erfolgt (noch zu überlegen) über:
 * Name
 
 Jeweils mit Kennwort. Entsprechende Möglichkeiten zum Zurücksetzen des Kennworts werden benötigt.
+
+
+Zusätzlich zu klären:
+
+* Fahrer benötigt? Anzahl?
+* Umpire / Scorer benötigt? Eigene Gruppe?
+ * Spieler müssen dann mehreren Gruppen zuordbar sein, bsp. Team + Scorer

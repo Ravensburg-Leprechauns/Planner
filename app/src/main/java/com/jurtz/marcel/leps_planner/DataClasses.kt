@@ -1,12 +1,6 @@
 package com.jurtz.marcel.leps_planner
 
-data class User(
-        val email: String,
-        val name: String,
-        val shirt_number: Int,
-        val group: String,
-        val role: String
-)
+
 
 // Roles:
 // 0: user

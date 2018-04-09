@@ -1,6 +1,6 @@
 # Leps Planner
 
-**Entwicklung (vorerst) gestoppt, neues Repository [hier](https://github.com/Ravensburg-Leprechauns)**
+**Entwicklung (vorerst) gestoppt, neues Repository [hier](https://github.com/Ravensburg-Leprechauns/EventPlanner)**
 
 Android-App zur Planung von Terminen und Kontrolle der Anwesenheit und des individuellen Einsatzes.
 
